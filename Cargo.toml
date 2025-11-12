@@ -1,0 +1,52 @@
+[package]
+name = "nest_ui"
+version = "0.1.0"
+edition = "2021"
+authors = ["Nest UI Reassembly Project"]
+description = "Modern Rust reimplementation of Nest Thermostat UI"
+
+[dependencies]
+# Embedded graphics and display
+embedded-graphics = "0.8"
+embedded-graphics-simulator = "0.6"
+tinybmp = "0.5"
+tinytga = "0.5"
+
+# Async runtime
+tokio = { version = "1.40", features = ["full"] }
+async-trait = "0.1"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# Logging
+log = "0.4"
+env_logger = "0.11"
+
+# Time handling
+chrono = { version = "0.4", features = ["serde"] }
+
+# State machine
+strum = { version = "0.26", features = ["derive"] }
+strum_macros = "0.26"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# HTTP client (for cloud API)
+reqwest = { version = "0.12", features = ["json", "rustls-tls"] }
+
+# Configuration
+config = "0.14"
+
+[dev-dependencies]
+mockall = "0.13"
+
+[profile.release]
+opt-level = "z"     # Optimize for size
+lto = true          # Enable Link Time Optimization
+codegen-units = 1   # Better optimization
+strip = true        # Strip symbols
